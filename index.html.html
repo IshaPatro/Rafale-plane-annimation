@@ -30,9 +30,29 @@
     	};
 
     	var map = new google.maps.Map(document.getElementById('map-canvas'),
-    		mapOptions);
-		var marker = new google.maps.Marker({position: ambala, map: map});
-		var marker = new google.maps.Marker({position: france, map: map});
+			mapOptions);
+			const contentString =
+    "</div>" +
+    '<h1 id="firstHeading" class="firstHeading">Ambala</h1>' +
+	"</div>";
+	const contentString2 =
+    "</div>" +
+    '<h1 id="firstHeading" class="firstHeading">France</h1>' +
+    "</div>";
+			const infowindow = new google.maps.InfoWindow({
+    	content: contentString
+		  });
+		  const infowindow1 = new google.maps.InfoWindow({
+    	content: contentString2
+  		});
+		var marker = new google.maps.Marker({position: ambala, map: map,title: "Ambala"});
+		var marker2 = new google.maps.Marker({position: france, map: map,title: "France"});
+		marker.addListener("click", () => {
+    infowindow.open(map, marker);
+  });
+  marker2.addListener("click", () => {
+    infowindow1.open(map, marker2);
+  });
     	var lineSymbol = {
     		path: 'M 0,-1 0,1',
     		strokeOpacity: 1,
